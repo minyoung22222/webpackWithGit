@@ -39,5 +39,14 @@ module.exports = {
                 },
             }
         ]
-    }
+    },
+    plugins: [
+        new webpack.BannerPlugin({
+            banner: `
+                Commit version : ${childProcess.execSync('git rev-parse --short HEAD')}
+                Committer name : ${childProcess.execSync('git config user.name')}
+                Commit Date : ${new Date().toLocaleString()}
+            `
+        })
+    ]
 }
